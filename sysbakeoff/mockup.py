@@ -12,7 +12,7 @@ ak_baseline = SystemIdMethod(
     descr="Dynamic Mode Decomposition with Control",
     is_discrete=True,
     is_continuous=False,
-    accepts_inputs=True
+    accepts_inputs=True,
 )
 
 ak_polynomial = SystemIdMethod(
@@ -20,7 +20,7 @@ ak_polynomial = SystemIdMethod(
     descr="EDMD with Inputs and Polynomial Observables",
     is_discrete=True,
     is_continuous=False,
-    accepts_inputs=True
+    accepts_inputs=True,
 )
 
 ak_fourier = SystemIdMethod(
@@ -28,7 +28,7 @@ ak_fourier = SystemIdMethod(
     descr="EDMD with Inputs and Random Fourier Features Observables",
     is_discrete=True,
     is_continuous=False,
-    accepts_inputs=True
+    accepts_inputs=True,
 )
 
 ak_nn = SystemIdMethod(
@@ -36,7 +36,7 @@ ak_nn = SystemIdMethod(
     descr="EDMD with Inputs and Neural Network Observables",
     is_discrete=True,
     is_continuous=False,
-    accepts_inputs=True
+    accepts_inputs=True,
 )
 
 ## benchmarks ##
@@ -46,7 +46,7 @@ pendulum_bench = Benchmark(
     descr="Torque Actuated Pendulum",
     dims=2,
     input_dims=1,
-    accepts_input=True
+    accepts_input=True,
 )
 
 fhn_bench = Benchmark(
@@ -54,7 +54,7 @@ fhn_bench = Benchmark(
     descr="FHN Oscillator",
     dims=2,
     input_dims=0,
-    accepts_input=False
+    accepts_input=False,
 )
 
 robertson_bench = Benchmark(
@@ -62,32 +62,21 @@ robertson_bench = Benchmark(
     descr="Chemical Reaction",
     dims=2,
     input_dims=0,
-    accepts_input=False
+    accepts_input=False,
 )
 
 relative_error = Score(
-    name= "Relative Error",
-    descr="<equation here>",
-    lower_better=True
+    name="Relative Error", descr="<equation here>", lower_better=True
 )
 
 
-benchmarks = [
-    robertson_bench, pendulum_bench, fhn_bench
-]
+benchmarks = [robertson_bench, pendulum_bench, fhn_bench]
 
 
-systemid_methods = [
-    ak_baseline,
-    ak_fourier,
-    ak_nn,
-    ak_polynomial
-]
+systemid_methods = [ak_baseline, ak_fourier, ak_nn, ak_polynomial]
 
 
-scores = [
-    relative_error
-]
+scores = [relative_error]
 
 
 results = [
@@ -98,7 +87,7 @@ results = [
         value=ScoreValue(
             score=relative_error.id,
             value=21.4,
-        )
+        ),
     ),
     BenchmarkResult(
         uid=str(uuid.uuid4()),
@@ -107,7 +96,7 @@ results = [
         value=ScoreValue(
             score=relative_error.id,
             value=1.37,
-        )
+        ),
     ),
     BenchmarkResult(
         uid=str(uuid.uuid4()),
@@ -116,7 +105,7 @@ results = [
         value=ScoreValue(
             score=relative_error.id,
             value=1.62,
-        )
+        ),
     ),
     BenchmarkResult(
         uid=str(uuid.uuid4()),
@@ -125,9 +114,8 @@ results = [
         value=ScoreValue(
             score=relative_error.id,
             value=43.2,
-        )
+        ),
     ),
-
     BenchmarkResult(
         uid=str(uuid.uuid4()),
         method=ak_baseline.id,
@@ -135,7 +123,7 @@ results = [
         value=ScoreValue(
             score=relative_error.id,
             value=21.4,
-        )
+        ),
     ),
     BenchmarkResult(
         uid=str(uuid.uuid4()),
@@ -144,7 +132,7 @@ results = [
         value=ScoreValue(
             score=relative_error.id,
             value=1.37,
-        )
+        ),
     ),
     BenchmarkResult(
         uid=str(uuid.uuid4()),
@@ -153,7 +141,7 @@ results = [
         value=ScoreValue(
             score=relative_error.id,
             value=1.62,
-        )
+        ),
     ),
     BenchmarkResult(
         uid=str(uuid.uuid4()),
@@ -162,9 +150,8 @@ results = [
         value=ScoreValue(
             score=relative_error.id,
             value=43.2,
-        )
+        ),
     ),
-
     BenchmarkResult(
         uid=str(uuid.uuid4()),
         method=ak_baseline.id,
@@ -172,7 +159,7 @@ results = [
         value=ScoreValue(
             score=relative_error.id,
             value=21.4,
-        )
+        ),
     ),
     BenchmarkResult(
         uid=str(uuid.uuid4()),
@@ -181,7 +168,7 @@ results = [
         value=ScoreValue(
             score=relative_error.id,
             value=1.37,
-        )
+        ),
     ),
     BenchmarkResult(
         uid=str(uuid.uuid4()),
@@ -190,7 +177,7 @@ results = [
         value=ScoreValue(
             score=relative_error.id,
             value=1.62,
-        )
+        ),
     ),
     BenchmarkResult(
         uid=str(uuid.uuid4()),
@@ -199,6 +186,6 @@ results = [
         value=ScoreValue(
             score=relative_error.id,
             value=43.2,
-        )
+        ),
     ),
 ]

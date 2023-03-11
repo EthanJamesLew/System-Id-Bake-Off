@@ -1,3 +1,5 @@
+"""System Identification Benchmarking API
+"""
 from sysbakeoff import *
 import sysbakeoff.mockup as mock
 from fastapi import FastAPI
@@ -6,9 +8,9 @@ from typing import Dict, List
 
 
 app = FastAPI(
-    title="SystemIdBakeoff",
+    title="System Id Bakeoff",
     description="API for fetching system id method performance",
-    version="0.0.1"  # TODO: change this
+    version="0.0.1",  # TODO: change this
 )
 
 
@@ -19,12 +21,12 @@ def read_root():
 
 @app.get("/benchmarks/")
 async def read_benchmarks() -> List[Benchmark]:
-    return mock.benchmarks 
+    return mock.benchmarks
 
 
 @app.get("/systemid-methods/")
 async def read_systemid_methods() -> List[SystemIdMethod]:
-    return mock.systemid_methods 
+    return mock.systemid_methods
 
 
 @app.get("/results/")
