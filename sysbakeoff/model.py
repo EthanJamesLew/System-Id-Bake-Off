@@ -1,44 +1,48 @@
 """ System ID Bakeoff API Schema Models
 """
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from uuid import UUID, uuid4
 from typing import List
 
 
-class Benchmark(BaseModel):
-    """the benchmark entity
+class UUIDModel(BaseModel):
+    id: UUID = Field(default_factory=uuid4)
+
+
+class DescribedModel(UUIDModel):
+    name: str
+    descr: str
+
+
+class Benchmark(DescribedModel):
+    """benchmark entity
     
       - has a name and description
       - has a number of state and input dimensions
     """
-    name: str
-    descr: str
     dims: int
     input_dims: int
     accepts_input: bool
 
 
-class SystemIdMethod(BaseModel):
+class SystemIdMethod(DescribedModel):
     """system identification entity
 
       - has a name and description
       - can be continuous, discrete, or both
       - accepts inputs optional
     """
-    name: str
-    descr: str
     is_discrete: bool
     is_continuous: bool
     accepts_inputs: bool
 
 
-class Score(BaseModel):
+class Score(DescribedModel):
     """score entity
 
       - has a name and description
       - has lower_better to determine score ordering
     """
-    name: str
-    descr: str
     lower_better: bool
 
 
@@ -48,24 +52,35 @@ class ScoreValue(BaseModel):
       - references a Score 
       - has numeric float value 
     """
-    score: Score
+    score: UUID 
     value: float
 
 
-class BenchmarkGroup(BaseModel):
+class BenchmarkGroup(DescribedModel):
     """benchmark group entity
 
       - has a name and description
     """
-    name: str
-    descr: str
+    ...
 
 
-class SystemIdMethodGroup(BaseModel):
+class SystemIdMethodGroup(DescribedModel):
     """system id method group entity
 
       - has a name and description
     """
-    name: str
-    descr: str
+    ...
 
+
+class BenchmarkResult(BaseModel):
+    """a benchmark result
+
+      - a unique identifier
+      - a system id method
+      - a benchmark
+      - a score value
+    """
+    uid: UUID
+    method: UUID 
+    benchmark: UUID 
+    value: ScoreValue
