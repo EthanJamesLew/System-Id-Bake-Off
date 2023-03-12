@@ -24,6 +24,11 @@ async def read_benchmarks() -> List[Benchmark]:
     return mock.benchmarks
 
 
+@app.get("/scores/")
+async def read_scores() -> List[Score]:
+    return [mock.relative_error]
+
+
 @app.get("/systemid-methods/")
 async def read_systemid_methods() -> List[SystemIdMethod]:
     return mock.systemid_methods
